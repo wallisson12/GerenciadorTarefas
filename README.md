@@ -1,5 +1,5 @@
 <h1>Ambiente-MVC</h1>
-Repositório com a configuração base para projetos PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apache, Docker, MySQL, Xdebug e Composer.
+Projeto PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apache, Docker, MySQL, Xdebug e Composer.
 
 <h2>Arquitetura Utilizada</h2>
 - O padrão de arquitetura MVC divide sua aplicação em três camadas.
