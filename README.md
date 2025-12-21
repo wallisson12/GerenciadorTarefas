@@ -33,6 +33,6 @@
 </ul>
 
 <h2>Como executar o projeto</h2>
-- Comando docker: docker-compose up -d
+- docker-compose up -d
 
 
