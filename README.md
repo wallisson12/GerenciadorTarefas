@@ -26,9 +26,13 @@
 </ul>
 
 <h2>Funcionalidades</h2>
--  
+<ul>
+  <li>CRUD entidade Usuario</li>
+  <li>Modelagem do banco</li>
+  <li>Sistema de login</li>
+</ul>
 
 <h2>Como executar o projeto</h2>
--
+- Comando docker: docker-compose up -d
 
 
