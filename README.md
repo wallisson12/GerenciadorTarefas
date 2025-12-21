@@ -1,19 +1,5 @@
-<h1>Gerenciador de Lista</h1>
-Projeto PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apache, Docker, MySQL, Xdebug e Composer.
-
-<h2>Arquitetura Utilizada</h2>
-- O padrão de arquitetura MVC divide sua aplicação em três camadas.
-
-<ul>
-  <li>Model (Modelo): Gerencia os dados e regras de negócio.</li>
-  
-  <li>View (Visão): Responsável pela interface do usuário.</li>
-  
-  <li>Controller (Controlador): Faz a mediação entre o Model e a View, processando as requisições.</li>
-</ul>
-
-<h2>Beneficios</h2>
--  Essa separação de camadas ajuda na organização, separação de responsabilidades e redução de acoplamento, onde promove o aumento de coesão nas classes do projeto, facilitando a manutenção do código e sua reutilização em outros projetos.
+<h1>Gerenciador de Tarefa</h1>
+- Aplicação backend desenvolvida em PHP 7 puro seguindo o padrão MVC, com o objetivo de desenvolver uma aplicação em arquitetura de sistemas legados, organização de código, boas práticas e ambiente de execução containerizado.
 
 <h2>Ferramentas Utilizadas</h2>
 <ul>
@@ -27,6 +13,20 @@ Projeto PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apa
 <li>Docker</li>
 <li>.dockerignore</li>
 </ul>
+
+<h2>Arquitetura</h2>
+- O padrão de arquitetura MVC dividindo sua aplicação em três camadas.
+
+<ul>
+  <li>Model: Responsável pelas regras de negócio.</li>
+  
+  <li>View: Responsável pela camada de apresentação.</li>
+  
+  <li>Controller: Responsável pelo fluxo da aplicação e regras de controle, faz a mediação entre o Model e a View, processando as requisições.</li>
+</ul>
+
+<h2>Beneficios</h2>
+-  Essa separação de camadas ajuda na organização, separação de responsabilidades e redução de acoplamento, onde promove o aumento de coesão nas classes do projeto, facilitando a manutenção do código e sua reutilização em outros projetos.
 
 <h2>Funcionamento</h2>
 
