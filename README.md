@@ -1,4 +1,4 @@
-<h1>Ambiente-MVC</h1>
+<h1>Listagem </h1>
 Projeto PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apache, Docker, MySQL, Xdebug e Composer.
 
 <h2>Arquitetura Utilizada</h2>
@@ -13,7 +13,7 @@ Projeto PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apa
 </ul>
 
 <h2>Beneficios</h2>
--  Essa separação de camadas ajuda na organização, separação de responsabilidades e redução de acoplamento, onde promove o aumento de coesão nas classes do projeto,facilitando a manutenção do código e sua reutilização em outros projetos.
+-  Essa separação de camadas ajuda na organização, separação de responsabilidades e redução de acoplamento, onde promove o aumento de coesão nas classes do projeto, facilitando a manutenção do código e sua reutilização em outros projetos.
 
 <h2>Ferramentas Utilizadas</h2>
 <ul>
