@@ -1,4 +1,4 @@
-<h1>Listagem </h1>
+<h1>Gerenciador de Lista</h1>
 Projeto PHP utilizando o padrão de arquitetura MVC. Inclui integração com Apache, Docker, MySQL, Xdebug e Composer.
 
 <h2>Arquitetura Utilizada</h2>
