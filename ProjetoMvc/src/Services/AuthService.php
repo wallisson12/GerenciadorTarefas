@@ -31,7 +31,6 @@ class AuthService{
             throw new InvalidArgumentException("Usuario ou Senha Inválidos!");
         }
 
-        //Depois criar um gerenciador para sessao
-        $_SESSION['usuario'] = $sUsername;
+        SessionManager::definir("usuario",$sUsername);
     }
 }

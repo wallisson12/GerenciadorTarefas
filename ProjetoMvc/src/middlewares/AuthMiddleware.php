@@ -3,6 +3,7 @@ namespace src\middlewares;
 
 use Exception;
 use RuntimeException;
+use SessionManager;
 
 /**
  * Responsavel por realizar a validacao de autenticacao do usuario 
@@ -14,7 +15,7 @@ class AuthMiddleware{
      */
     public static function handle(){
         try{
-            if(!isset($_SESSION['usuario'])){
+            if(is_null(SessionManager::obter("usuario"))){
                 throw new RuntimeException("Usuario não autenticado");
             }
 
