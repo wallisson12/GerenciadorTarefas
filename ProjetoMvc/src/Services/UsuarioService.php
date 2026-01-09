@@ -28,6 +28,10 @@ class UsuarioService{
      * @return void
      */
     public function cadastrarNovoUsuario(array $aDados = []) : void {
+        if(!isset($aDados['cadastrarUsuario'])){
+            header('Location: /home/index');
+            exit();
+        }
         $this->validarDadosCadastroUsuario($aDados);
         $aDados['senha'] = password_hash($aDados['senha'],PASSWORD_DEFAULT);
         $oUsuario = Usuario::createFromArray($aDados);
@@ -65,18 +69,17 @@ class UsuarioService{
     }
 
     /**
-     * Responsavel por autenticar os dados de login
+     * Responsavel por buscar um usuario por seu username
      * 
      * @param string $sUserName
-     * @param string $sSenha
      */
-    public function autenticarUsuario(string $sUserName, string $sSenha){
-        $oUsuario = $this->oUsuarioDAO->findByUserName($sUserName);
-        if(!password_verify($sSenha,$oUsuario->getSenhaCriptografada())){
-            throw new InvalidArgumentException("Usuario ou Senha Inválidos!");
+    public function buscarPorUsername(string $sUserName) : Usuario{
+        if(empty($sUserName)){
+            throw new InvalidArgumentException("Nome do usuario inválido");
         }
 
-        //Salva na sessao (Criar uma classe para ter essa responsabilidade de salvar e remover)
+        $oUsuario = $this->oUsuarioDAO->findByUserName($sUserName);
+        return $oUsuario;
     }
 
     /**

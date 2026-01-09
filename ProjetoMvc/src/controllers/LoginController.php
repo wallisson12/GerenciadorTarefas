@@ -2,32 +2,28 @@
 
 namespace src\controllers;
 
-use Model\Usuario\UsuarioDAO;
+use AuthService;
 use Exception;
-use InvalidArgumentException;
-use Model\Usuario\Usuario;
-use DAOFactory;
 use View;
-use UsuarioService;
 
 
 require_once 'src/DAO/DAOFactory.php';
-require_once 'src/Services/UsuarioService.php';
 require_once 'src/Model/Usuario/UsuarioDAO.php';
+require_once 'src/Services/AuthService.php';
 
 /**
  * Realiza o controle do login
  */
 class LoginController{
 
-    /** @var UsuarioService $oUsuarioService **/
-    private $oUsuarioService;
+    /** @var AuthService $oAuthService **/
+    private $oAuthService;
 
     /**
      * Construtor
      */
     public function __construct(){
-        $this->oUsuarioService = new UsuarioService(DAOFactory::getDAOFactory()->getUsuarioDAO());
+        $this->oAuthService = new AuthService();
     }
 
     /**
@@ -43,10 +39,7 @@ class LoginController{
      */
     public function logar(array $aDados = []) : void {
         try{
-            if(empty($aDados['username']) || empty($aDados['senha'])){
-                throw new InvalidArgumentException("Login ou senha inválido(s)");
-            }
-            $this->oUsuarioService->autenticarUsuario($aDados['username'],$aDados['senha']);
+            $this->oAuthService->autenticar($aDados['username'],$aDados['senha']);
             header('Location: /home/index');
         }catch(Exception $oException){
             $oException->getMessage();

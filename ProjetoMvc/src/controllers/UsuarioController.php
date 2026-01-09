@@ -79,16 +79,12 @@ class UsuarioController {
      */
     public function cadastar(array $aDados = []): void {
         try{
-            if(isset($aDados['cadastrarUsuario'])){
-                $this->oUsuarioService->cadastrarNovoUsuario($aDados);
-                header('Location: /usuario/indexCadastrar');
-            }else{
-                header('Location: /home/index');
-                exit();
-            }
+            $this->oUsuarioService->cadastrarNovoUsuario($aDados);
+            header('Location: /usuario/indexCadastrar');
         }catch(Exception $e){
             $e->getMessage();
             header('Location: /home/index');
+            exit();
         }
     }
 
@@ -108,7 +104,7 @@ class UsuarioController {
                 "message" => $oException->getMessage()
             ]);
             header('Location: /home/indexListar');
-            exit;
+            exit();
         }
     }
 
