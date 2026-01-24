@@ -1,17 +1,13 @@
-<html lang="en" class="h-full bg-gray-700">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <script src="http://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="h-full">    
+<?php 
+	$oViewHead = new View("src/public/view/layouts/head.php");
+    $oViewHead->adicionarDado('sTitulo','Login');
+	$oViewHead->render();
+?>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <!-- <img src="" alt="Your Company" class="mx-auto h-10 w-auto" /> -->
-             <h3 class="mt-10 text-center">Adicionar uma imagem</h3>
-        </div>
+            <h3 class="mt-10 text-center">Adicionar uma imagem</h3>
+    </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form action="/login/logar" method="post" class="space-y-6">
@@ -44,8 +40,12 @@
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/src/public/view/login/js/Login.js"></script>
-<script src="/src/public/view//js/toggleSenha.js"></script>
-</body>
-</html>
+<?php 
+	$oViewFooter = new View("src/public/view/layouts/footer.php");
+    $aJsScripts = [
+        '/src/public/view/login/js/Login.js',
+        '/src/public/view//js/toggleSenha.js'
+    ]; 
+    $oViewFooter->adicionarDado('aJsScripts',$aJsScripts);
+	$oViewFooter->render();
+?>

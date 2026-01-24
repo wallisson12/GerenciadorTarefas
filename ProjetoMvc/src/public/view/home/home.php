@@ -1,18 +1,26 @@
-<html lang="en" class="h-full bg-gray-700">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
-	<script src="http://cdn.tailwindcss.com"></script>
-</head>
-<h3 class="text-white">Home</h3>
-<body class="h-full">
-	<ul>
+<?php 
+	$oViewHead = new View("src/public/view/layouts/head.php");
+	$oViewHead->adicionarDado('sTitulo','Home');
+	$oViewHead->render();
+
+	$oViewNav = new View("src/public/view/layouts/nav.php");
+	$oViewNav->render();
+?>
+
+<div class="mt-20">
+	<header class="bg-gray-800 shadow">
+		<div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
+			<legend class="text-white text-2xl font-bold tracking-tight">Home</legend>
+			<hr class="w-60">
+		</div>
+	</header>
+	<ul class="mt-5">
 		<li><a class="text-blue-700 underline" href="/usuario/indexCadastrar">Cadastro Usuario</a></li>
 		<li><a class="text-blue-700 underline" href="/usuario/indexListar">Lista Usuarios</a></li>
 	</ul>
+</div>
 
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</body>
-</html>
+<?php 
+	$oViewFooter = new View("src/public/view/layouts/footer.php"); 
+	$oViewFooter->render();
+?>

@@ -1,15 +1,20 @@
-<html lang="en" class="h-full bg-gray-700">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Usuarios</title>
-    <script src="http://cdn.tailwindcss.com"></script>
-</head>
-<body class="h-full">
-    <h3 class="text-red text-white">Lista Usuarios</h3>
+<?php 
+    $oViewHead = new View("src/public/view/layouts/head.php");
+    $oViewHead->adicionarDado('sTitulo','Lista Usuários');
+	$oViewHead->render();
 
-<div class="p-6">
-  <div class="overflow-x-auto rounded-lg shadow-lg">
+   	$oViewNav = new View("src/public/view/layouts/nav.php");
+	$oViewNav->render();
+?>
+<div class=" mt-20 p-6">
+    <header class="bg-gray-800 shadow mb-5">
+        <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
+            <legend class="text-white text-2xl font-bold tracking-tight">Lista Usuários</legend>
+            <hr class="w-60">
+        </div>
+    </header>
+
+    <div class="overflow-x-auto rounded-lg shadow-lg">
         <table id="tabela_usuarios" class="min-w-full bg-gray-800 text-gray-200 text-sm">
         <thead class="bg-gray-900 text-gray-300 uppercase text-xs">
                 <tr>
@@ -23,9 +28,11 @@
             </tbody>
         </table>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/src/public/view/usuario/js/Usuario.js"></script>
-</body>
-
-</html>
+<?php 
+    $oViewFooter = new View("src/public/view/layouts/footer.php");
+    $aJsScripts = ['/src/public/view/usuario/js/Usuario.js']; 
+    $oViewFooter->adicionarDado('aJsScripts',$aJsScripts);
+    $oViewFooter->render();
+?>

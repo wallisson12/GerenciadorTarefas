@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 function realizarRequisicaoAjaxListarUsuarios(){
     $.ajax({
         url: "/usuario/listarAjax",
-        type: "GET",
+        type: "post",
         dataType: "json",
         success: (usuarios) => {
             let html = '';
