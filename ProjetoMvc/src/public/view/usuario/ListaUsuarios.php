@@ -1,22 +1,40 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Usuarios</title>
-</head>
-<body>
-    <h3>Lista Usuarios</h3>
-    <table id="tabela_usuarios">
-        <thead>
-            <th>Nome</th>
-            <th>Tipo de usuario</th>
-            <th>Acoes</th>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/src/public/view/usuario/js/Usuario.js"></script>
-</body>
+<?php 
+    $oViewHead = new View("src/public/view/layouts/head.php");
+    $oViewHead->adicionarDado('sTitulo','Lista Usuários');
+	$oViewHead->render();
 
-</html>
+   	$oViewNav = new View("src/public/view/layouts/nav.php");
+	$oViewNav->render();
+?>
+<div class="mt-24">
+    <header class="bg-gray-800 shadow">
+        <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
+            <legend class="text-white text-2xl font-bold tracking-tight">Lista Usuários</legend>
+            <hr class="w-60">
+        </div>
+    </header>
+
+    <div class="p-6">
+        <div class="overflow-x-auto rounded-lg shadow-lg">
+            <table id="tabela_usuarios" class="min-w-full bg-gray-800 text-gray-200 text-sm">
+            <thead class="bg-gray-900 text-gray-300 uppercase text-xs">
+                    <tr>
+                        <th class="px-6 py-3 text-left">Usuário</th>
+                        <th class="px-6 py-3 text-left">Tipo</th>
+                        <th class="px-6 py-3 text-center">Editar</th>
+                        <th class="px-6 py-3 text-center">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<?php 
+    $oViewFooter = new View("src/public/view/layouts/footer.php");
+    $aJsScripts = ['/src/public/view/usuario/js/Usuario.js']; 
+    $oViewFooter->adicionarDado('aJsScripts',$aJsScripts);
+    $oViewFooter->render();
+?>

@@ -5,20 +5,23 @@ document.addEventListener("DOMContentLoaded",()=>{
 function realizarRequisicaoAjaxListarUsuarios(){
     $.ajax({
         url: "/usuario/listarAjax",
-        type: "GET",
+        type: "post",
         dataType: "json",
         success: (usuarios) => {
             let html = '';
             usuarios.forEach(usuario => {
                 html += `
                     <tr>
-                        <td>${usuario.username}</td>
-                        <td>${usuario.tipo_usuario}</td>
-                         <td>
-                            <button class="btn-editar" data-id="${usuario.id}">Editar</button>
+                        <td class="px-6 py-4 font-medium">${usuario.username}</td>
+                        
+                        <td class="px-6 py-4">${usuario.tipo_usuario}</td>
+
+                         <td class="px-6 py-4 text-center">
+                            <button class="btn-editar px-3 py-1 rounded bg-blue-600 hover:bg-blue-700 transition text-white text-xs" data-id="${usuario.id}">Editar</button>
                         </td>
-                        <td>
-                            <button class="btn-deletar" data-id="${usuario.id}">Deletar</button>
+
+                        <td class = "px-6 py-4 text-center">
+                            <button class="btn-deletar px-3 py-1 rounded bg-red-600 hover:bg-red-700 transition text-white text-xs" data-id="${usuario.id}">Deletar</button>
                         </td>
                     </tr>
                 `;

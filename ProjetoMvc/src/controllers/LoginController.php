@@ -4,6 +4,8 @@ namespace src\controllers;
 
 use AuthService;
 use Exception;
+use SessionHandler;
+use SessionManager;
 use View;
 
 
@@ -28,6 +30,9 @@ class LoginController{
 
     /**
      * Carrega a view de login
+     * 
+     * @param array $aDados
+     * @return void
      */
     public function index(array $aDados = []) : void {
         $oView = new View(__DIR__."/../public/view/login/login.php");
@@ -36,11 +41,32 @@ class LoginController{
 
     /**
      * Realiza o login do usuario
+     * 
+     * @param array $aDados
      */
     public function logar(array $aDados = []) : void {
         try{
             $this->oAuthService->autenticar($aDados['username'],$aDados['senha']);
             header('Location: /home/index');
+        }catch(Exception $oException){
+            $oException->getMessage();
+            header("Location: /login/index");
+            exit();
+        }
+    }
+
+    /**
+     * Realiza o logout do usuario e todos os dados salvos na sessao
+     * 
+     * @param array $aDados 
+     * @return void
+     */
+    public function logout(array $aDados = []) : void{
+        try{
+            if(isset($aDados['logoutUsuario'])){
+                SessionManager::destroySession();
+                header("Location: /login/index");
+            }
         }catch(Exception $oException){
             $oException->getMessage();
             header("Location: /login/index");
