@@ -16,9 +16,9 @@ class UsuarioService{
     /**
      * Construtor
      */
-    public function __construct(UsuarioDAO $oUsuarioDAO)
+    public function __construct()
     {
-        $this->oUsuarioDAO = $oUsuarioDAO;     
+        $this->oUsuarioDAO = DAOFactory::getDAOFactory()->getUsuarioDAO();     
     }
 
     /**

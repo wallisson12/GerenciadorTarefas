@@ -12,7 +12,7 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php"
 	$oViewNav->render();
 ?>
 
-<div class="mt-20">
+<div class="mt-24">
     <header class="bg-gray-800 shadow">
         <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
             <legend class="text-white text-2xl font-bold tracking-tight">Editar</legend>

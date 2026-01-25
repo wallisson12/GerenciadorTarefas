@@ -9,7 +9,7 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php";
    	$oViewNav = new View("src/public/view/layouts/nav.php");
 	$oViewNav->render();
 ?>
-<div class="mt-20">
+<div class="mt-24">
     <header class="bg-gray-800 shadow mb-5">
         <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
             <legend class="text-white text-2xl font-bold tracking-tight">Cadastrar Usuario</legend>
@@ -54,7 +54,7 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php";
 
 <?php 
 	$oViewFooter = new View("src/public/view/layouts/footer.php");
-    $aJsScripts = ['/src/public/view//js/toggleSenha.js']; 
+    $aJsScripts = ['/src/public/view/login/js/toggleSenha.js']; 
     $oViewFooter->adicionarDado('aJsScripts',$aJsScripts);
 	$oViewFooter->render();
 ?>

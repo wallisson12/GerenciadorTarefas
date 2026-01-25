@@ -31,9 +31,7 @@ class UsuarioController {
      */
     public function __construct()
     {
-        $this->oUsuarioService = new UsuarioService(
-            DAOFactory::getDAOFactory()->getUsuarioDAO()
-        );
+        $this->oUsuarioService = new UsuarioService();
     }
 
     /**

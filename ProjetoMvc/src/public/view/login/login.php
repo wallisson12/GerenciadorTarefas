@@ -5,11 +5,11 @@
 ?>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <!-- <img src="" alt="Your Company" class="mx-auto h-10 w-auto" /> -->
-            <h3 class="mt-10 text-center">Adicionar uma imagem</h3>
+            <img src="/src/public/imagens/LogoGerenciadorTarefas.png" alt="TaskyFlow" class="mx-auto h-80 w-auto" />
+            <h3 class="text-gray-200 text-4xl font-bold text-center">TaskyFlow</h3>
     </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+  <div class="mt-14 sm:mx-auto sm:w-full sm:max-w-sm">
       <form action="/login/logar" method="post" class="space-y-6">
         <div>
             <div class="flex items-center justify-between">
@@ -44,7 +44,7 @@
 	$oViewFooter = new View("src/public/view/layouts/footer.php");
     $aJsScripts = [
         '/src/public/view/login/js/Login.js',
-        '/src/public/view//js/toggleSenha.js'
+        '/src/public/view/login/js/toggleSenha.js'
     ]; 
     $oViewFooter->adicionarDado('aJsScripts',$aJsScripts);
 	$oViewFooter->render();
