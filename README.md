@@ -28,7 +28,6 @@
 <h2>Funcionalidades</h2>
 <ul>
   <li>CRUD entidade Usuario</li>
-  <li>Modelagem do banco</li>
   <li>Sistema de login</li>
 </ul>
 
