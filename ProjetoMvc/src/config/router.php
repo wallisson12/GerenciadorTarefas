@@ -87,5 +87,4 @@ function verificarRotasPublicas(string $sRotaAtual) : bool{
 	$aRotasPublicas = ['login/index','login/logar','usuario/indexCadastrar','usuario/cadastrar'];
 	return in_array($sRotaAtual,$aRotasPublicas);
 }
-
 ?>

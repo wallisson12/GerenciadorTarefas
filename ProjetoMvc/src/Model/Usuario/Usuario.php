@@ -32,11 +32,23 @@ class Usuario{
     /**
      * Construtor
      */
-    public function __construct(string $sUserName,int $iTipoUsuario)
-    {
+    public function __construct(string $sUserName,int $iTipoUsuario) {
         $this->sUserName = $sUserName;
         $this->iTipoUsuario = $iTipoUsuario;
         $this->iStatus = BooleanEnum::SIM;
+    }
+
+    /*
+     * Responsavel por criar um objeto usuario dado um array
+     * 
+     * @param array $aDados
+     * @return Usuario
+     */
+    public static function createFromArray(array $aDados): Usuario {
+        $oUsuario = new Usuario($aDados['username'],intval($aDados['tipo_usuario']));
+        $oUsuario->iIdUsuario = $aDados['id'];
+        $oUsuario->sSenha = $aDados['senha'];
+        return $oUsuario;
     }
   
     /**
@@ -153,19 +165,5 @@ class Usuario{
      */
     public function deletar(): void {
         DAOFactory::getDAOFactory()->getUsuarioDAO()->deletar($this);
-    }
-
-
-    /**
-     * Responsavel por criar um objeto usuario dado um array
-     * 
-     * @param array $aDados
-     * @return Usuario
-     */
-    public static function createFromArray(array $aDados): Usuario {
-        $oUsuario = new Usuario($aDados['username'],intval($aDados['tipo_usuario']));
-        $oUsuario->setId($aDados['id']);
-        $oUsuario->setSenha($aDados['senha']);
-        return $oUsuario;
     }
 }

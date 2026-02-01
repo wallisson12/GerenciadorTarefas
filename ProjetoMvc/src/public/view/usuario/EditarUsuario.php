@@ -13,12 +13,19 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php"
 ?>
 
 <div class="mt-24">
+    
+    <?php 
+        $oViewMensagem = new View("src/public/view/layouts/flash.php");
+        $oViewMensagem->render();
+    ?>
+
     <header class="bg-gray-800 shadow">
         <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
             <legend class="text-white text-2xl font-bold tracking-tight">Editar</legend>
             <hr class="w-60">
         </div>
     </header>
+
     <form class="space-y-6" id="formularioEditarUsuario" action="/usuario/atualizar" method="post">
     
         <input type="hidden" name="id" value="<?php echo $oUsuario->getId();?>">

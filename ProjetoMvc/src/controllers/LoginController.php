@@ -4,7 +4,7 @@ namespace src\controllers;
 
 use AuthService;
 use Exception;
-use SessionHandler;
+use Mensagens;
 use SessionManager;
 use View;
 
@@ -49,7 +49,7 @@ class LoginController{
             $this->oAuthService->autenticar($aDados['username'],$aDados['senha']);
             header('Location: /home/index');
         }catch(Exception $oException){
-            $oException->getMessage();
+            Mensagens::error($oException->getMessage());
             header("Location: /login/index");
             exit();
         }
@@ -68,7 +68,7 @@ class LoginController{
                 header("Location: /login/index");
             }
         }catch(Exception $oException){
-            $oException->getMessage();
+            Mensagens::error($oException->getMessage());
             header("Location: /login/index");
             exit();
         }

@@ -16,8 +16,7 @@ class UsuarioService{
     /**
      * Construtor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->oUsuarioDAO = DAOFactory::getDAOFactory()->getUsuarioDAO();     
     }
 
@@ -28,11 +27,7 @@ class UsuarioService{
      * @return void
      */
     public function cadastrarNovoUsuario(array $aDados = []) : void {
-        if(!isset($aDados['cadastrarUsuario'])){
-            header('Location: /home/index');
-            exit();
-        }
-        $this->validarDadosCadastroUsuario($aDados);
+        $this->validarDadosCadastro($aDados);
         $aDados['senha'] = password_hash($aDados['senha'],PASSWORD_DEFAULT);
         $oUsuario = Usuario::createFromArray($aDados);
         $oUsuario->cadastrar();
@@ -44,8 +39,8 @@ class UsuarioService{
      * @param array $aDados
      * @return void
      */
-    public function editarUsuario(array $aDados = []) : Usuario {
-        $this->validarAcaoEditarDeletarUsuario($aDados);
+    public function getUsuario(array $aDados = []) : Usuario {
+        $this->validarUsuario($aDados);
         $oUsuario = $this->oUsuarioDAO->findById($aDados['id']);
         return $oUsuario;
     }
@@ -56,14 +51,9 @@ class UsuarioService{
      * @param array $aDados
      * @return void
      */
-    public function atualizarCadastroUsuario(array $aDados = []) : void {
-        $this->validarAcaoEditarDeletarUsuario($aDados);
-        if(empty($aDados['username'])){
-            throw new InvalidArgumentException("O nome do usuario é obrigatorio");
-        }
-        if(empty($aDados['tipo_usuario'])){
-            throw new InvalidArgumentException("O tipo de usuario é obrigatorio");
-        }
+    public function atualizarUsuario(array $aDados = []) : void {
+        $this->validarUsuario($aDados);
+        $this->validarDadosEditar($aDados);
         $oUsuario = Usuario::createFromArray($aDados);
         $oUsuario->atualizar();
     }
@@ -100,8 +90,8 @@ class UsuarioService{
      * @return void
      * 
      */
-    public function deletarCadastroUsuario(array $aDados = []) : void {
-        $this->validarAcaoEditarDeletarUsuario($aDados);
+    public function deletarUsuario(array $aDados = []) : void {
+        $this->validarUsuario($aDados);
         $oUsuario = $this->oUsuarioDAO->findById($aDados['id']);
         $oUsuario->deletar();
     } 
@@ -113,21 +103,41 @@ class UsuarioService{
      * @param array $aDados
      * @return void
      */
-    private function validarDadosCadastroUsuario(array $aDados = []) : void {
-        if(!empty($aDados)){
-            
-            if(empty($aDados['username'])){
-                throw new InvalidArgumentException("O nome é obrigatorio");  
-            }
+    private function validarDadosCadastro(array $aDados = []) : void {
+        if(!isset($aDados['cadastrarUsuario'])){
+            header('Location: /home/index');
+            exit();
+        }
 
-            if(empty($aDados['tipo_usuario'])){
-                throw new InvalidArgumentException("O tipo de usuario é obrigatorio");
-            }
+        $aCamposObrigatorios = [
+            'username' => 'Nome obrigatório',
+            'tipo_usuario' => 'Tipo de usuario obrigatório',
+            'senha' => 'Senha obrigatória'
+        ];
 
-            if(empty($aDados['senha'])){
-                throw new InvalidArgumentException("A senha é obrigatoria");
+        foreach($aCamposObrigatorios as $sCampo => $sMensagem){
+            if(empty($aDados[$sCampo])){
+                throw new InvalidArgumentException($sMensagem);                
             }
+        }
 
+    }
+
+    /**
+     * Responsavel por realizar a validacao dos campos de editar
+     * 
+     * @var array $aDados
+     */
+    private function validarDadosEditar(array $aDados){
+        $aCamposObrigatorios = [
+            'username' => 'Nome obrigatório',
+            'tipo_usuario' => 'Tipo de usuario obrigatório',
+        ];
+
+        foreach($aCamposObrigatorios as $sCampo => $sMensagem){
+            if(empty($aDados[$sCampo])){
+                throw new InvalidArgumentException($sMensagem);                
+            }
         }
     }
 
@@ -138,11 +148,9 @@ class UsuarioService{
      * @param array $aDados
      * @return void
      */
-    private function validarAcaoEditarDeletarUsuario(array $aDados = []) : void {
-        if(!empty($aDados)){
-            if(empty($aDados['id'])){
-               throw new InvalidArgumentException("O identificador do usuario não foi encontrado");
-            }
+    private function validarUsuario(array $aDados = []) : void {
+        if(empty($aDados['id'])){
+            throw new InvalidArgumentException("O identificador do usuario não foi encontrado");
         }
     }
 
