@@ -19,6 +19,14 @@ class UsuarioFilters{
 
 
     /**
+     * Responsavel por criar uma instacia de usuario filters atraves do array passado
+     */
+    public static function creatFromArray(array $aDados) : UsuarioFilters{
+        $oUsuarioFilters = new UsuarioFilters();
+        return $oUsuarioFilters;  
+    }
+
+    /**
      * Retorna o Id do usuario
      */
     public function getIdUsuario(): int {
@@ -44,14 +52,6 @@ class UsuarioFilters{
      */
     public function getStatusUsuario() : int {
         return $this->iStatusUsuario;
-    }
-
-    /**
-     * Responsavel por criar uma instacia de usuario filters atraves do array passado
-     */
-    public static function creatFromArray(array $aDados) : UsuarioFilters{
-      $oUsuarioFilters = new UsuarioFilters();
-      return $oUsuarioFilters;  
     }
     
 }

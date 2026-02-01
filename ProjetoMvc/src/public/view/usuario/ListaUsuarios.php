@@ -7,6 +7,12 @@
 	$oViewNav->render();
 ?>
 <div class="mt-24">
+
+    <?php
+        $oViewMensagem = new View("src/public/view/layouts/flash.php");
+        $oViewMensagem->render();
+    ?>
+    
     <header class="bg-gray-800 shadow">
         <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
             <legend class="text-white text-2xl font-bold tracking-tight">Lista Usuários</legend>

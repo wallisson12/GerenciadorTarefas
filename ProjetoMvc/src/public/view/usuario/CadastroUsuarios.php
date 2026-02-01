@@ -10,12 +10,18 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php";
 	$oViewNav->render();
 ?>
 <div class="mt-24">
+    <?php
+        $oViewMensagem = new View("src/public/view/layouts/flash.php");
+        $oViewMensagem->render();
+    ?>
+    
     <header class="bg-gray-800 shadow mb-5">
         <div class=" mx-auto max-w-7xl py-6 px-4 ml-7">
             <legend class="text-white text-2xl font-bold tracking-tight">Cadastrar Usuario</legend>
             <hr class="w-60">
         </div>
     </header>
+
     <form class="space-y-6" id="formularioCadastroUsuario" action="/usuario/cadastar" method="post">
 
         <div class="ml-7 w-1/2">

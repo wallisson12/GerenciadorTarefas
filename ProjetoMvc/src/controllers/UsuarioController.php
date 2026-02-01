@@ -3,11 +3,7 @@
 namespace src\controllers;
 
 use Exception;
-use InvalidArgumentException;
-use Model\Usuario\Usuario;
-use DAOFactory;
-use Model\Usuario\UsuarioDAO;
-use src\config\DataBase;
+use Mensagens;
 use UsuarioFilters;
 use UsuarioService;
 use View;
@@ -17,6 +13,7 @@ require_once 'src/Model/Usuario/Usuario.php';
 require_once 'src/Model/Usuario/UsuarioFilters.php';
 require_once 'src/Services/UsuarioService.php';
 require_once 'src/Utils/CarregarViews/View.php';
+require_once 'src/helpers/Mensagens.php';
 
 /**
  * Classe UsuariosController
@@ -29,8 +26,7 @@ class UsuarioController {
     /**
      * Construtor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->oUsuarioService = new UsuarioService();
     }
 
@@ -59,12 +55,12 @@ class UsuarioController {
      */
     public function editar(array $aDados = []){
         try{
-            $oUsuario = $this->oUsuarioService->editarUsuario($aDados);
+            $oUsuario = $this->oUsuarioService->getUsuario($aDados);
             $oView = new View("src/public/view/usuario/EditarUsuario.php");
             $oView->adicionarDado("oUsuario",$oUsuario);
             $oView->render();
         }catch(Exception $oException){
-            $oException->getMessage();
+            Mensagens::error($oException->getMessage());
             header('Location: /home/indexListar');
             exit();
         }
@@ -78,9 +74,10 @@ class UsuarioController {
     public function cadastar(array $aDados = []): void {
         try{
             $this->oUsuarioService->cadastrarNovoUsuario($aDados);
+            Mensagens::success("Cadastro Realizado com sucesso!");
             header('Location: /usuario/indexCadastrar');
-        }catch(Exception $e){
-            $e->getMessage();
+        }catch(Exception $oException){
+            Mensagens::error($oException->getMessage());
             header('Location: /home/index');
             exit();
         }
@@ -113,10 +110,11 @@ class UsuarioController {
      */
     public function atualizar(array $aDados = []): void {
         try{
-            $this->oUsuarioService->atualizarCadastroUsuario($aDados);    
+            $this->oUsuarioService->atualizarUsuario($aDados);
+            Mensagens::success("Usuário atualizado com sucesso!");
             header('Location: /usuario/indexListar');
         }catch(Exception $oException){
-            $oException->getMessage();
+            Mensagens::error($oException->getMessage());
             header('Location: /home/indexListar');
             exit();
         }
@@ -130,10 +128,11 @@ class UsuarioController {
      */
     public function deletar(array $aDados = []) : void {
         try{
-            $this->oUsuarioService->deletarCadastroUsuario($aDados);
+            $this->oUsuarioService->deletarUsuario($aDados);
+            Mensagens::success("Usuário apagado com sucesso!");
             header('Location: /usuario/indexListar');
         }catch(Exception $oException){
-            $oException->getMessage();
+            Mensagens::error($oException->getMessage());
             header('Location: /home/indexListar');
             exit();
         }

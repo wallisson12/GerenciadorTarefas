@@ -19,9 +19,9 @@ class SessionManager{
      * Define um dado na sessao
      * 
      * @param string $sKey
-     * @param string $sValor
+     * @param string|mixed $sValor
      */
-    public static function definir(string $sKey, string $sValor): void{
+    public static function definir(string $sKey,$sValor): void{
         self::iniciarSessao();
         $_SESSION[$sKey] = $sValor ?? null;
     }
@@ -32,7 +32,7 @@ class SessionManager{
      * 
      * @param string $sKey
      */
-    public static function obter(string $sKey) : ?string {
+    public static function obter(string $sKey) {
         self::iniciarSessao();
         return $_SESSION[$sKey] ?? null;
     }
