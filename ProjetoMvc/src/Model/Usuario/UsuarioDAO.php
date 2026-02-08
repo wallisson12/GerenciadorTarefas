@@ -43,7 +43,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
      * 
      * @param string $sUserName
      */
-    public function findByUserName(string $sUserName) : Usuario {
+    public function findByUserName(string $sUserName) : ?Usuario {
         $sSql = "SELECT * FROM users usr WHERE usr.username = ? AND usr.status = ?";
         $aParam = [$sUserName,BooleanEnum::SIM];
 
@@ -54,7 +54,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         }
 
         if(empty($aaUsuario)){
-            throw new Exception("Não existe nemhum usuario com esse username: {$sUserName}");
+            return null;
         }
 
         return Usuario::createFromArray($aaUsuario[0]);;

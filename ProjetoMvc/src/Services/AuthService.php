@@ -27,10 +27,14 @@ class AuthService{
 
         $oUsuario = $this->oUsuarioService->buscarPorUsername($sUsername);
 
+        if(is_null($oUsuario)){
+            throw new Exception("Usuário não existe");
+        }
+
         if(!password_verify($sSenha,$oUsuario->getSenhaCriptografada())){
             throw new InvalidArgumentException("Usuario ou Senha Inválidos!");
         }
 
-        SessionManager::definir("usuario",$sUsername);
+        SessionManager::definir("usuario",$oUsuario);
     }
 }

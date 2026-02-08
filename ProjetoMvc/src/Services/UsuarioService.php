@@ -28,6 +28,10 @@ class UsuarioService{
      */
     public function cadastrarNovoUsuario(array $aDados = []) : void {
         $this->validarDadosCadastro($aDados);
+        $oUsuario = $this->buscarPorUsername($aDados['username']);
+        if(!is_null($oUsuario)){
+            throw new InvalidArgumentException("Já existe um usuario com esse nome!");
+        }
         $aDados['senha'] = password_hash($aDados['senha'],PASSWORD_DEFAULT);
         $oUsuario = Usuario::createFromArray($aDados);
         $oUsuario->cadastrar();
@@ -63,7 +67,7 @@ class UsuarioService{
      * 
      * @param string $sUserName
      */
-    public function buscarPorUsername(string $sUserName) : Usuario{
+    public function buscarPorUsername(string $sUserName) : ?Usuario{
         if(empty($sUserName)){
             throw new InvalidArgumentException("Nome do usuario inválido");
         }

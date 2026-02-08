@@ -22,7 +22,7 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php";
         </div>
     </header>
 
-    <form class="space-y-6" id="formularioCadastroUsuario" action="/usuario/cadastar" method="post">
+    <form class="space-y-6" id="formularioCadastroUsuario" action="/usuario/cadastrar" method="post">
 
         <div class="ml-7 w-1/2">
             <label for="username" class="block text-sm/6 font-medium text-white">Nome</label>

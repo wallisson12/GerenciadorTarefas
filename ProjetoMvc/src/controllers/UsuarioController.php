@@ -71,14 +71,14 @@ class UsuarioController {
      * 
      * @param array $aDados
      */
-    public function cadastar(array $aDados = []): void {
+    public function cadastrar(array $aDados = []): void {
         try{
             $this->oUsuarioService->cadastrarNovoUsuario($aDados);
             Mensagens::success("Cadastro Realizado com sucesso!");
             header('Location: /usuario/indexCadastrar');
         }catch(Exception $oException){
             Mensagens::error($oException->getMessage());
-            header('Location: /home/index');
+            header('Location: /usuario/indexCadastrar');
             exit();
         }
     }
