@@ -27,8 +27,10 @@
 
 <h2>Funcionalidades</h2>
 <ul>
-  <li>CRUD entidade Usuario</li>
+  <li>Gerenciamento de Usuario</li>
   <li>Sistema de login</li>
+  <li>Roteador</li>
+  <li>FeedBack visual de mensagens do sistema</li>
 </ul>
 
 <h2>Como executar o projeto</h2>
