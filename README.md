@@ -18,11 +18,18 @@
 - O padrão de arquitetura MVC dividindo sua aplicação em três camadas.
 
 <ul>
-  <li>Model: Responsável pelas regras de negócio.</li>
+  <li>Model: Camada responsável pelas regras de negócio.</li>
   
-  <li>View: Responsável pela camada de apresentação.</li>
+  <li>View: Camada responsável pela apresentação.</li>
   
-  <li>Controller: Responsável pelo fluxo da aplicação e regras de controle, faz a mediação entre o Model e a View, processando as requisições.</li>
+  <li>Controller: Camada responsável pelo fluxo da aplicação e regras de controle, faz a mediação entre o Model e a View, processando as requisições.</li>
+  
+  <li>Service: Camada responável por centralizar a regra de negócio, validações, cálculos etc.</li>
+
+  <li>DAO: Camada responsável por centralizar a lógica de acesso aos dados no banco de dados</li>
+
+  <li>Middleware: Camada intermediária entre a rota e o controller</li>
+  
 </ul>
 
 <h2>Funcionalidades</h2>
