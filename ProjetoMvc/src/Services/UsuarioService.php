@@ -3,6 +3,7 @@
 use Model\Usuario\Usuario;
 use Model\Usuario\UsuarioDAO;
 use Model\Usuario\UsuaarioFilters;
+use Model\Usuario\UsuarioFactory;
 
 /**
  * Classe responsavel por centralizar as regras e 
@@ -33,7 +34,7 @@ class UsuarioService{
             throw new InvalidArgumentException("Já existe um usuario com esse nome!");
         }
         $aDados['senha'] = password_hash($aDados['senha'],PASSWORD_DEFAULT);
-        $oUsuario = Usuario::createFromArray($aDados);
+        $oUsuario = UsuarioFactory::create($aDados);
         $oUsuario->cadastrar();
     }
 
@@ -58,7 +59,7 @@ class UsuarioService{
     public function atualizarUsuario(array $aDados = []) : void {
         $this->validarUsuario($aDados);
         $this->validarDadosEditar($aDados);
-        $oUsuario = Usuario::createFromArray($aDados);
+        $oUsuario = UsuarioFactory::create($aDados);
         $oUsuario->atualizar();
     }
 
