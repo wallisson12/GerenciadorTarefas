@@ -1,7 +1,10 @@
 <?php
-//Todas as requisisoes vao ser jogadas aqui com o paramentro url
-//Por causa do .htaccess
+use src\config\Router;
+
 require_once 'src/Utils/Managers/SessionManager.php';
+require_once 'src/config/Router.php';
+
 SessionManager::iniciarSessao();
-require_once 'src/config/router.php';
+$aDados = array_merge($_POST,$_GET);
+Router::rotear($aDados);
 ?>
