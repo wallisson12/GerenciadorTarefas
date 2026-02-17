@@ -25,8 +25,8 @@ class Usuario{
     /** @var int $iTipoUsuario */
     public $iTipoUsuario;
 
-    /** @var int $iStatus */
-    private $iStatus;
+    /** @var int $iDeletado */
+    private $iDeletado;
 
 
     /**
@@ -35,22 +35,9 @@ class Usuario{
     public function __construct(string $sUserName,int $iTipoUsuario) {
         $this->sUserName = $sUserName;
         $this->iTipoUsuario = $iTipoUsuario;
-        $this->iStatus = BooleanEnum::SIM;
+        $this->iDeletado = BooleanEnum::NAO;
     }
 
-    /*
-     * Responsavel por criar um objeto usuario dado um array
-     * 
-     * @param array $aDados
-     * @return Usuario
-     */
-    public static function createFromArray(array $aDados): Usuario {
-        $oUsuario = new Usuario($aDados['username'],intval($aDados['tipo_usuario']));
-        $oUsuario->iIdUsuario = $aDados['id'];
-        $oUsuario->sSenha = $aDados['senha'];
-        return $oUsuario;
-    }
-  
     /**
      * Retorna o id do usuario
      * 
@@ -79,12 +66,21 @@ class Usuario{
     }
 
     /**
+     * Retorna a senha criptografada
+     * 
+     * @return string
+     */
+    public function getSenhaCriptografada(): string {
+        return $this->sSenha;
+    }
+
+    /**
      * Retorna o status do usuario
      * 
      * @return int
      */
     public function getStatusUsuario(): ?int {
-        return $this->iStatus;
+        return $this->iDeletado;
     }
 
     /**
@@ -114,30 +110,22 @@ class Usuario{
         $this->iTipoUsuario = $iTipoUsuario;
     }
 
-
-    /**
-     * Retorna a senha criptografada
-     */
-    public function getSenhaCriptografada(): string {
-        return $this->sSenha;
-    }
-
     /**
      * Define a senha do usuario
      * 
      * @param string $sSenha
      */
-    private function setSenha(string $sSenha) : void{
+    public function setSenha(string $sSenha) : void{
         $this->sSenha = $sSenha;
     }
 
     /**
      * Define o status do usuario, (deletado ou nao)
      * 
-     * @param int $iStatus
+     * @param int $iDeletado
      */
-    public function setStatusUsuario(int $iStatus) : void {
-        $this->iStatus = $iStatus;
+    public function setStatusUsuario(int $iDeletado) : void {
+        $this->iDeletado = $iDeletado;
     }
 
     /**
@@ -164,6 +152,7 @@ class Usuario{
      * @return void
      */
     public function deletar(): void {
+        $this->iDeletado = BooleanEnum::SIM;
         DAOFactory::getDAOFactory()->getUsuarioDAO()->deletar($this);
     }
 }

@@ -5,17 +5,17 @@
  */
 class UsuarioFilters{
 
-    /** @var int iIdUsuario */
+    /** @var int $iIdUsuario */
     private $iIdUsuario;
 
-    /** @var string sNomeUsuario */
+    /** @var string $sNomeUsuario */
     private $sUserName;
 
-    /** @var int iTipoUsuario */
+    /** @var int $iTipoUsuario */
     private $iTipoUsuario;
 
-    /** @var int iStatusUsuario*/
-    private $iStatusUsuario;
+    /** @var int $iDeletado */
+    private $iDeletado;
 
 
     /**
@@ -51,7 +51,7 @@ class UsuarioFilters{
      * Retorna o status do usuario
      */
     public function getStatusUsuario() : int {
-        return $this->iStatusUsuario;
+        return $this->iDeletado;
     }
     
 }

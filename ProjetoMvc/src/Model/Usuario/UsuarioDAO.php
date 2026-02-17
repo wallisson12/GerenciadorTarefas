@@ -8,10 +8,12 @@ use Model\Usuario\Usuario;
 use PDOException;
 use src\config\DataBase;
 use Model\Usuario\UsuarioInterfaceDAO;
+use Model\Usuario\UsuarioFactory;
 use UsuarioFilters;
 
 require_once 'src/Model/Usuario/UsuarioInterfaceDAO.php';
 require_once 'src/Utils/Enums/BooleanEnum.php';
+require_once 'src/Model/Usuario/UsuarioFactory.php';
 
 class UsuarioDAO implements UsuarioInterfaceDAO{
     
@@ -34,7 +36,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
             throw new Exception("Não existe nemhum usuario com esse id : {$iId}");
         }
 
-        return Usuario::createFromArray($aaUsuario[0]);;
+        return UsuarioFactory::create($aaUsuario[0]);;
     }
 
 
@@ -57,7 +59,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
             return null;
         }
 
-        return Usuario::createFromArray($aaUsuario[0]);;
+        return UsuarioFactory::create($aaUsuario[0]);;
     }
 
     /**
@@ -69,7 +71,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         $sSql = "SELECT * FROM users usr 
                  Where usr.status = ? ORDER BY usr.username";
 
-        $aParam = [BooleanEnum::SIM];
+        $aParam = [BooleanEnum::NAO];
 
         try{
             $aaUsuarios = DataBase::getInstance()->query($sSql,$aParam);
@@ -79,7 +81,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
 
         $aUsuariosObj = [];
         foreach($aaUsuarios as $aUsuario){
-            $oUsuario = Usuario::createFromArray($aUsuario);
+            $oUsuario = UsuarioFactory::create($aUsuario);
             $aUsuariosObj[] = [
                     'id' => $oUsuario->getId(),
                     'username' => $oUsuario->getNomeUsuario(), 
@@ -99,7 +101,13 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
      */
     public function cadastrar(Usuario $oUsuario): void {
         $sSql = "INSERT INTO users (username,senha,tipo_usuario,status) VALUES (?,?,?,?)";
-        $aParam = [$oUsuario->getNomeUsuario(),$oUsuario->getSenhaCriptografada(),$oUsuario->getTipoUsuario(),$oUsuario->getStatusUsuario()];
+
+        $aParam = [
+            $oUsuario->getNomeUsuario(),
+            $oUsuario->getSenhaCriptografada(),
+            $oUsuario->getTipoUsuario(),
+            $oUsuario->getStatusUsuario()
+        ];
 
         try{
             DataBase::getInstance()->execute($sSql,$aParam);
@@ -117,7 +125,12 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         $sSql = "UPDATE users usr
                  SET usr.username = ?, usr.tipo_usuario = ?
                  WHERE usr.id = ?";
-        $aParam = [$oUsuario->getNomeUsuario(),$oUsuario->getTipoUsuario(),$oUsuario->getId()];
+
+        $aParam = [
+            $oUsuario->getNomeUsuario(),
+            $oUsuario->getTipoUsuario(),
+            $oUsuario->getId()
+        ];
 
         try{
             DataBase::getInstance()->execute($sSql,$aParam);
@@ -135,7 +148,11 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
      */
     public function deletar(Usuario $oUsuario): void {
         $sSql = "UPDATE users usr SET usr.status = ? WHERE usr.id = ?";
-        $aParam = [BooleanEnum::NAO,$oUsuario->getId()];
+
+        $aParam = [
+            $oUsuario->getStatusUsuario(),
+            $oUsuario->getId()
+        ];
         
         try{
             DataBase::getInstance()->execute($sSql,$aParam);
