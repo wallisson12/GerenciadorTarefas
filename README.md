@@ -15,8 +15,8 @@
 </ul>
 
 <h2>Arquitetura</h2>
-- O padrão de arquitetura MVC dividindo sua aplicação em três camadas.
-- Clean Architecture, visando a separação de responsabilidades, criando o sistema mais testável e independente, com camadas bem definidas.
+<p>- O padrão de arquitetura MVC dividindo sua aplicação em três camadas.</p>
+<p>- Clean Architecture, visando a separação de responsabilidades, criando o sistema mais testável e independente, com camadas bem definidas.</p>
 
 <ul>
   <li><b>Model:</b> Camada responsável pelas regras de negócio.</li>
