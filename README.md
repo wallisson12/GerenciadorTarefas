@@ -1,6 +1,6 @@
 <h1>Gerenciador de Tarefa</h1>
-<p>- Aplicação backend desenvolvida em PHP 7 puro seguindo o padrão MVC, com o objetivo de desenvolver uma aplicação em arquitetura de sistemas legados, organização de código, boas práticas e ambiente de execução containerizado.</p>
 <p>- TaskyFlow é um sistema de gerenciamento de tarefas</p>
+<p>- Aplicação backend desenvolvida em PHP 7 puro seguindo o padrão MVC, com o objetivo de desenvolver uma aplicação em arquitetura de sistemas legados, organização de código, boas práticas e ambiente de execução containerizado.</p>
 
 <h2>Ferramentas Utilizadas</h2>
 <ul>
