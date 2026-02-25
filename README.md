@@ -1,5 +1,5 @@
 <h1>TaskyFlow</h1>
-<p>- Sistema completo de gerenciamento de tarefas, desenvolvido com foco em organização arquitetural, boas práticas e estrutura escalável para aplicações reais. A aplicação permite o gerenciamento de usuários e tarefas por meio de um backend estruturado em PHP 7 puro, seguindo o padrão MVC e com separação clara de responsabilidades utilizando clean architecture. </p>
+<p>- Sistema completo de gerenciamento de tarefas, desenvolvido com foco em organização arquitetural, boas práticas e estrutura escalável para aplicações reais. A aplicação permite o gerenciamento de usuários e tarefas por meio de um backend estruturado em PHP 7 puro, JavaScript, Jquery, Ajax e Tailwind CSS, seguindo o padrão MVC e com separação clara de responsabilidades, utilizando clean architecture. </p>
 
 <h2>Ferramentas Utilizadas</h2>
 <ul>
