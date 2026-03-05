@@ -1,6 +1,7 @@
 <?php
 
 use Model\Usuario\UsuarioDAO;
+use Model\Post\PostDAO;
 
 require_once 'src/DAO/DAOFactoryInterface.php';
 
@@ -11,6 +12,7 @@ class DAOFactory implements DAOFactoryInterface{
 
     private static $oInstance = null;
     private $oUsuarioDAO;
+    private $oPostDAO;
 
     /**
      * Retorna a instacia da classe
@@ -28,10 +30,20 @@ class DAOFactory implements DAOFactoryInterface{
      */
     public function getUsuarioDAO(): UsuarioDAO
     {
-        if(empty($oUsuarioDAO)){
+        if(empty($this->oUsuarioDAO)){
             $this->oUsuarioDAO = new UsuarioDAO;
         }
         return $this->oUsuarioDAO;
+    }
+
+    /**
+     * Retorna a instancia de post DAO
+     */
+    public function getPostDAO() : PostDAO{
+        if(empty($this->oPostDAO)){
+            $this->oPostDAO = new PostDAO();
+        }
+        return $this->oPostDAO;
     }
 
 }
