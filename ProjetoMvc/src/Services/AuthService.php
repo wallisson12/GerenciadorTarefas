@@ -1,5 +1,11 @@
 <?php
 
+use DAO\DAOFactory;
+
+require_once 'src/DAO/DAOFactory.php';
+require_once 'src/Services/UsuarioService.php';
+require_once 'src/Utils/Managers/SessionManager.php';
+
 /**
  * Responsavel por centralizar a regra de negocio da autenticacao
  */

@@ -1,4 +1,5 @@
 <?php
+namespace DAO;
 
 use Model\Usuario\UsuarioDAO;
 use Model\Post\PostDAO;

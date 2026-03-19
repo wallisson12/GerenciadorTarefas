@@ -1,5 +1,6 @@
 <?php 
-require_once "src/Model/Usuario/TipoUsuarioEnum.php";
+    use Model\Usuario\TipoUsuarioEnum;
+    require_once "src/Model/Usuario/TipoUsuarioEnum.php";
 ?>
 <?php 
     $oViewHead = new View("src/public/view/layouts/head.php");
@@ -46,7 +47,7 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php";
             <label for="tipo_usuario" class="ml-7 block mb-2.5 text-sm text-white font-medium text-heading">Tipo Usuario</label>
             <div class="w-60 mt-2 ml-7">
                 <select id="tipo_usuario" name="tipo_usuario" class="w-full block rounded-md px-3 py-2.5 bg-white/5 border-default-medium text-heading text-sm text-white focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" require>
-                    <option class="text-gray-900" value="<?php echo TipoUsuarioEnum::Comun; ?>">Comun</option>
+                    <option class="text-gray-900" value="<?php echo TipoUsuarioEnum::Comum; ?>">Comun</option>
                     <option class="text-gray-900" value="<?php echo TipoUsuarioEnum::Administrador; ?>">Admin</option>
                 </select>
             </div>

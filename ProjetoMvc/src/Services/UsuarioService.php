@@ -1,9 +1,12 @@
 <?php 
 
+use DAO\DAOFactory;
 use Model\Usuario\Usuario;
 use Model\Usuario\UsuarioDAO;
-use Model\Usuario\UsuaarioFilters;
+use Model\Usuario\UsuarioFilters;
 use Model\Usuario\UsuarioFactory;
+
+require_once 'src/DAO/DAOFactory.php';
 
 /**
  * Classe responsavel por centralizar as regras e 
@@ -73,7 +76,7 @@ class UsuarioService{
             throw new InvalidArgumentException("Nome do usuario inválido");
         }
 
-        $oUsuario = $this->oUsuarioDAO->findByUserName($sUserName);
+        $oUsuario = $this->oUsuarioDAO->findByUsername($sUserName);
         return $oUsuario;
     }
 

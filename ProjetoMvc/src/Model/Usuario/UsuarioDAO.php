@@ -2,26 +2,36 @@
 namespace Model\Usuario;
 
 use BooleanEnum;
-use DAOFactory;
+use DAO\DAOFactory;
 use Exception;
 use Model\Usuario\Usuario;
 use PDOException;
 use src\config\DataBase;
 use Model\Usuario\UsuarioInterfaceDAO;
 use Model\Usuario\UsuarioFactory;
-use UsuarioFilters;
 
 require_once 'src/Model/Usuario/UsuarioInterfaceDAO.php';
 require_once 'src/Utils/Enums/BooleanEnum.php';
 require_once 'src/Model/Usuario/UsuarioFactory.php';
+require_once 'src/Model/Usuario/UsuarioFilters.php';
 
+/**
+ * Classe UsuarioDAO
+ */
 class UsuarioDAO implements UsuarioInterfaceDAO{
     
-    /**
-     * Busca um usuario por seu id
-     * 
-     * @param int $iId
-     */
+    /*
+    * Busca um usuario por seu id
+    *
+    * @author Wallisson
+    * 
+    * @param int $iId
+    * @return Usuario
+    *
+    * @throws PDOException|Exception
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function findById(int $iId): Usuario {
         $sSql = "SELECT * FROM users usr WHERE usr.id = ?";
         $aParam = [$iId];
@@ -40,14 +50,21 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
     }
 
 
-    /**
-     * Busca um usuario por seu username
-     * 
-     * @param string $sUserName
-     */
-    public function findByUserName(string $sUserName) : ?Usuario {
-        $sSql = "SELECT * FROM users usr WHERE usr.username = ? AND usr.status = ?";
-        $aParam = [$sUserName,BooleanEnum::SIM];
+    /*
+    * Busca um usuario por seu username
+    *
+    * @author Wallisson
+    * 
+    * @param string $sUserName
+    * @return Usuario|null
+    *
+    * @throws PDOException
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
+    public function findByUsername(string $sUserName) : ?Usuario {
+        $sSql = "SELECT * FROM users usr WHERE usr.username = ?";
+        $aParam = [$sUserName];
 
         try{
             $aaUsuario = DataBase::getInstance()->query($sSql,$aParam);
@@ -62,11 +79,18 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         return UsuarioFactory::create($aaUsuario[0]);;
     }
 
-    /**
-     * Responsavel por retornar os usuarios baseado nos filtros passados
-     * 
-     * @var UsuarioFilters $oUsuarioFilters
-     */
+    /*
+    * Responsavel por retornar os usuarios baseado nos filtros passados
+    *
+    * @author Wallisson
+    * 
+    * @param UsuarioFilters $oUsuarioFilters
+    * @return array
+    *
+    * @throws PDOException
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function findByFilters(UsuarioFilters $oUsuarioFilters): array {
         $sSql = "SELECT * FROM users usr 
                  Where usr.status = ? ORDER BY usr.username";
@@ -93,12 +117,18 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         return $aUsuariosObj;
     }
 
-    /**
-     * Responsavel por realizr o cadastro de um usuario no banco
-     * 
-     * @param Usuario $oUsuario
-     * @return void
-     */
+    /*
+    * Responsavel por realizr o cadastro de um usuario no banco
+    *
+    * @author Wallisson
+    * 
+    * @param Usuario $oUsuario
+    * @return void
+    *
+    * @throws PDOException
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function cadastrar(Usuario $oUsuario): void {
         $sSql = "INSERT INTO users (username,senha,tipo_usuario,status) VALUES (?,?,?,?)";
 
@@ -116,11 +146,18 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         }
     }
 
-    /**
-     * Responsavel por atualiza um usuario
-     * 
-     * @param Usuario $oUsuario
-     */
+    /*
+    * Responsavel por atualizar um usuario no banco de dados
+    *
+    * @author Wallisson
+    * 
+    * @param Usuario $oUsuario
+    * @return void
+    *
+    * @throws PDOException
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function atualizar(Usuario $oUsuario): void {
         $sSql = "UPDATE users usr
                  SET usr.username = ?, usr.tipo_usuario = ?
@@ -140,12 +177,18 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
     }
 
 
-    /**
-     * Responsavel por deletar um usuario do banco
-     * 
-     * @param int $iId
-     * @return void 
-     */
+    /*
+    * Responsavel por deletar logicamente um usuario do banco
+    *
+    * @author Wallisson
+    * 
+    * @param Usuario $oUsuario
+    * @return void 
+    *
+    * @throws PDOException
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function deletar(Usuario $oUsuario): void {
         $sSql = "UPDATE users usr SET usr.status = ? WHERE usr.id = ?";
 

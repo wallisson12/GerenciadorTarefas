@@ -4,7 +4,7 @@ namespace src\controllers;
 
 use Exception;
 use Mensagens;
-use UsuarioFilters;
+use Model\Usuario\UsuarioFilters;
 use UsuarioService;
 use View;
 

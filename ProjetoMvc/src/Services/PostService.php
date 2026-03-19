@@ -1,4 +1,7 @@
 <?php
+namespace Model\Post;
+
+use DAO\DAOFactory;
 
 /**
  * Classe PostService

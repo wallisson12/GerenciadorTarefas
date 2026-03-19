@@ -1,9 +1,14 @@
 <?php
+namespace Model\Usuario;
 
 /**
- * Class TipoUsuarioEnum
+ * Classe TipoUsuarioEnum
  */
-class TipoUsuarioEnum{
+class TipoUsuarioEnum {
+
+    /** @var int Administrador */
     public const Administrador = 2;
-    public const Comun = 1;
+    
+    /** @var int Comum */
+    public const Comum = 1;
 }

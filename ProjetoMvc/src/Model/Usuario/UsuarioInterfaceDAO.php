@@ -2,48 +2,98 @@
 namespace Model\Usuario;
 
 use Model\Usuario\Usuario;
-use UsuarioFilters;
+use Model\Usuario\UsuarioFilters;
 
 /**
- * Interface de UsuarioDAO
+ * Interface UsuarioInterfaceDAO
  */
 interface UsuarioInterfaceDAO{
 
-    /**
-     * Busca um usuario por Id passado
-     * 
-     * @param int $iId 
-     */
+    /*
+    * Busca um usuario por id
+    *
+    * @author Wallisson
+    * 
+    * @param int $iId
+    * @return Usuario
+    *
+    * @throws Exception
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function findById(int $iId): Usuario;
 
 
     /**
-     * Busca varios usuarios por filtros passados
+     * Busca um usuario por seu username
      * 
-     * @param UsuarioFilters $oUsuarioFilters
+     * @author Wallisson
+     * 
+     * @param string $sUserName
+     * @return Usuario|null
+     * 
+     * @throws Exception
+     * 
+     * @since 1.0.0 - Definição do versionamento da função
      */
+    public function findByUsername(string $sUserName) : ?Usuario;
+
+
+    /*
+    * Busca os usuarios baseado nos filtros passados
+    *
+    * @author Wallisson
+    * 
+    * @param UsuarioFilters $oUsuarioFilters
+    * @return array
+    *
+    * @throws Exception
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function findByFilters(UsuarioFilters $oUsuarioFilters): array;
 
 
-    /**
-     * Cadastra um usuario
-     * 
-     * @param Usuario $oUsuario
-     */
+    /*
+    * Realiza o cadastro de um usuario
+    *
+    * @author Wallisson
+    * 
+    * @param Usuario $oUsuario
+    * @return void
+    *
+    * @throws Exception
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function cadastrar(Usuario $oUsuario): void;
 
 
-    /**
-     * Atualiza um Usuario
-     * 
-     * @param Usuario $oUsuario   
-     */
+    /*
+    * Atualiza os dados de um Usuario
+    *
+    * @author Wallisson
+    * 
+    * @param Usuario $oUsuario
+    * @return void
+    *
+    * @throws Exception
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function atualizar(Usuario $oUsuario): void;
 
-    /**
-     * Deleta logicamente um usuario
-     * 
-     * @param int $iId
-     */
+    /*
+    * Realiza a deleção lógica de um usuario
+    *
+    * @author Wallisson
+    * 
+    * @param Usuario $oUsuario
+    * @return void
+    *
+    * @throws Exception
+    * 
+    * @since 1.0.0 - Definição do versionamento da função
+    */
     public function deletar(Usuario $oUsuario): void;
 }

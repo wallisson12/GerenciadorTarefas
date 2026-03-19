@@ -21,7 +21,7 @@ function realizarRequisicaoAjaxListarUsuarios(){
                         </td>
 
                         <td class = "px-6 py-4 text-center">
-                            <button class="btn-deletar px-3 py-1 rounded bg-red-600 hover:bg-red-700 transition text-white text-xs" data-id="${usuario.id}">Deletar</button>
+                            <button class="btn-deletar px-2 py-1 rounded bg-red-600 hover:bg-red-700 transition text-white text-xs" data-id="${usuario.id}">Deletar</button>
                         </td>
                     </tr>
                 `;
