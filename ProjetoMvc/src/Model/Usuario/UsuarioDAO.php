@@ -51,35 +51,6 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
 
 
     /*
-    * Busca um usuario por seu username
-    *
-    * @author Wallisson
-    * 
-    * @param string $sUserName
-    * @return Usuario|null
-    *
-    * @throws PDOException
-    * 
-    * @since 1.0.0 - Definição do versionamento da função
-    */
-    public function findByUsername(string $sUserName) : ?Usuario {
-        $sSql = "SELECT * FROM users usr WHERE usr.username = ?";
-        $aParam = [$sUserName];
-
-        try{
-            $aaUsuario = DataBase::getInstance()->query($sSql,$aParam);
-        }catch (PDOException $oException){
-            throw new PDOException("Ocorreu um erro ao buscar o usuario com username: {$sUserName}");
-        }
-
-        if(empty($aaUsuario)){
-            return null;
-        }
-
-        return UsuarioFactory::create($aaUsuario[0]);;
-    }
-
-    /*
     * Responsavel por retornar os usuarios baseado nos filtros passados
     *
     * @author Wallisson
@@ -93,9 +64,16 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
     */
     public function findByFilters(UsuarioFilters $oUsuarioFilters): array {
         $sSql = "SELECT * FROM users usr 
-                 Where usr.status = ? ORDER BY usr.username";
+                 Where usr.status = ?";
 
         $aParam = [BooleanEnum::NAO];
+
+        if(!empty($oUsuarioFilters->getNomeUsuario())){
+            $sSql .= " AND usr.username LIKE ?";
+            $aParam[] = "%" . $oUsuarioFilters->getNomeUsuario() . "%";
+        }
+
+        $sSql .= " ORDER BY usr.username DESC";
 
         try{
             $aaUsuarios = DataBase::getInstance()->query($sSql,$aParam);
@@ -106,12 +84,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
         $aUsuariosObj = [];
         foreach($aaUsuarios as $aUsuario){
             $oUsuario = UsuarioFactory::create($aUsuario);
-            $aUsuariosObj[] = [
-                    'id' => $oUsuario->getId(),
-                    'username' => $oUsuario->getNomeUsuario(), 
-                    'tipo_usuario' => $oUsuario->getTipoUsuario(),
-                    'status' => $oUsuario->getStatusUsuario()
-            ];
+            $aUsuariosObj[] = $oUsuario;
         }
 
         return $aUsuariosObj;

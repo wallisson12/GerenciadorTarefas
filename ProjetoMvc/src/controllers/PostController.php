@@ -1,5 +1,6 @@
 <?php
 
+use Model\Post\PostService;
 /**
  * Classe PostController
  */

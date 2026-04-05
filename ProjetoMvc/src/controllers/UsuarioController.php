@@ -92,12 +92,12 @@ class UsuarioController {
         try {
             $oUsuarioFilters = UsuarioFilters::creatFromArray($aDados);
             $aoUsuarios = $this->oUsuarioService->listarUsuarios($oUsuarioFilters);
-            echo json_encode($aoUsuarios);
+            
+            $oView = new View("src/public/view/usuario/include/TabelaUsuariosFiltro.php");
+            $oView->adicionarDado("aoUsuarios", $aoUsuarios);
+            $oView->render();
          } catch (Exception $oException) {
-            echo json_encode([
-                "error" => true,
-                "message" => $oException->getMessage()
-            ]);
+            Mensagens::error($oException->getMessage());
             header('Location: /home/indexListar');
             exit();
         }

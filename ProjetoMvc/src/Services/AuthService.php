@@ -31,11 +31,13 @@ class AuthService{
             throw new InvalidArgumentException("Login ou senha inválido(s)");
         }
 
-        $oUsuario = $this->oUsuarioService->buscarPorUsername($sUsername);
+        $iNumeroUsuariosEncontrados = $this->oUsuarioService->verificarExistenciaUsuarioByUserName($sUsername);
 
-        if(is_null($oUsuario)){
+        if($iNumeroUsuariosEncontrados == 0){
             throw new Exception("Usuário não existe");
         }
+
+        $oUsuario = $this->oUsuarioService->buscarPorUsername($sUsername);
 
         if(!password_verify($sSenha,$oUsuario->getSenhaCriptografada())){
             throw new InvalidArgumentException("Usuario ou Senha Inválidos!");

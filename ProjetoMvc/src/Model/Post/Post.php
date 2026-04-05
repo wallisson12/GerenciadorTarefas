@@ -3,6 +3,7 @@ namespace Model\Post;
 
 use Model\Usuario\Usuario;
 use BooleanEnum;
+use TipoStatusPostEnum;
 
 /**
  * Classe Post
@@ -20,6 +21,9 @@ class Post {
 
     /** @var Usuario $oUsuario */
     private $oUsuario;
+
+    /** @var int $iStatus */
+    private $iStatus;
 
     /** @var int $iDeletado */
     private $iDeletado;
@@ -41,6 +45,7 @@ class Post {
         $this->oUsuario = $oUsuario;
         $this->sTitulo = $sTitulo;
         $this->iDeletado = BooleanEnum::NAO;
+        $this->iStatus = TipoStatusPostEnum::CRIADO;
     }
     
 

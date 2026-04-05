@@ -1,5 +1,7 @@
 <?php
+use Model\Usuario\TipoUsuarioEnum;
 require_once "src/Model/Usuario/TipoUsuarioEnum.php"
+
 /** @var Usuario $oUsuario*/
 ?>
     
@@ -42,8 +44,8 @@ require_once "src/Model/Usuario/TipoUsuarioEnum.php"
             <div class="ml-7 mt-2 w-60">
                 <select name="tipo_usuario" class="block rounded-md w-full px-3 py-2.5 bg-white/5 border-default-medium text-heading text-sm text-white focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" require>
 
-                    <option class="text-gray-900" value="<?php echo TipoUsuarioEnum::Comun ?>" 
-                        <?php echo $oUsuario->getTipoUsuario() == TipoUsuarioEnum::Comun 
+                    <option class="text-gray-900" value="<?php echo TipoUsuarioEnum::Comum ?>" 
+                        <?php echo $oUsuario->getTipoUsuario() == TipoUsuarioEnum::Comum 
                                     ? "selected" 
                                     : "" ?>>Comun</option>
 

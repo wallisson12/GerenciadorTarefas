@@ -24,21 +24,6 @@ interface UsuarioInterfaceDAO{
     public function findById(int $iId): Usuario;
 
 
-    /**
-     * Busca um usuario por seu username
-     * 
-     * @author Wallisson
-     * 
-     * @param string $sUserName
-     * @return Usuario|null
-     * 
-     * @throws Exception
-     * 
-     * @since 1.0.0 - Definição do versionamento da função
-     */
-    public function findByUsername(string $sUserName) : ?Usuario;
-
-
     /*
     * Busca os usuarios baseado nos filtros passados
     *

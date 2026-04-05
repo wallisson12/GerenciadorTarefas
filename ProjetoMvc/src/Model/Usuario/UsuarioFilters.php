@@ -33,6 +33,15 @@ class UsuarioFilters {
     */
     public static function creatFromArray(array $aDados) : UsuarioFilters {
         $oUsuarioFilters = new UsuarioFilters();
+
+        if(!empty($aDados['username'])) {
+            $oUsuarioFilters->sUserName = $aDados['username'];
+        }
+
+        if(!empty($aDados['tipo_usuario'])) {
+            $oUsuarioFilters->iTipoUsuario = intval($aDados['tipo_usuario']);
+        }
+
         return $oUsuarioFilters;  
     }
 
@@ -47,8 +56,21 @@ class UsuarioFilters {
     * 
     * @since 1.0.0 - Definição do versionamento da função
     */
-    public function getIdUsuario(): int {
+    public function getIdUsuario(): ?int {
         return $this->iIdUsuario;
+    }
+
+    /**
+     * Define o Id do usuário
+     * 
+     * @param int $iIdUsuario
+     * 
+     * @author Wallisson
+     * 
+     * @return void
+     */
+    public function setIdUsuario(int $iIdUsuario) : void {
+        $this->iIdUsuario = $iIdUsuario;
     }
 
     /*
@@ -63,7 +85,21 @@ class UsuarioFilters {
     * @since 1.0.0 - Definição do versionamento da função
     */
     public function getNomeUsuario(): string {
-        return $this->sUserName;
+        return $this->sUserName ?? '';
+    }
+
+    /**
+     * Define o nome do usuário
+     * 
+     * @param string $sUserName
+     * @author Wallisson
+     * @return void
+     * 
+     * @since 1.0.0 - Definição do versionamento da função
+     */
+
+    public function setNomeUsuario(string $sUserName) : void {
+        $this->sUserName = $sUserName;
     }
 
     /*
@@ -77,7 +113,7 @@ class UsuarioFilters {
     * 
     * @since 1.0.0 - Definição do versionamento da função
     */
-    public function getTipoUsuario() : int {
+    public function getTipoUsuario() : ?int {
         return $this->iTipoUsuario;
     }   
 
@@ -92,7 +128,7 @@ class UsuarioFilters {
     * 
     * @since 1.0.0 - Definição do versionamento da função
     */
-    public function getStatusUsuario() : int {
+    public function getStatusUsuario() : ?int {
         return $this->iDeletado;
     }
     

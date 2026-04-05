@@ -32,8 +32,8 @@ class UsuarioService{
      */
     public function cadastrarNovoUsuario(array $aDados = []) : void {
         $this->validarDadosCadastro($aDados);
-        $oUsuario = $this->buscarPorUsername($aDados['username']);
-        if(!is_null($oUsuario)){
+        $iNumeroUsuariosEncontrados = $this->verificarExistenciaUsuarioByUserName($aDados['username']);
+        if($iNumeroUsuariosEncontrados > 0){
             throw new InvalidArgumentException("Já existe um usuario com esse nome!");
         }
         $aDados['senha'] = password_hash($aDados['senha'],PASSWORD_DEFAULT);
@@ -71,13 +71,39 @@ class UsuarioService{
      * 
      * @param string $sUserName
      */
-    public function buscarPorUsername(string $sUserName) : ?Usuario{
+    public function verificarExistenciaUsuarioByUserName(string $sUserName) : int{
         if(empty($sUserName)){
             throw new InvalidArgumentException("Nome do usuario inválido");
         }
 
-        $oUsuario = $this->oUsuarioDAO->findByUsername($sUserName);
-        return $oUsuario;
+        $oUsuarioFilters = new UsuarioFilters();
+        $oUsuarioFilters->setNomeUsuario($sUserName);
+        $aoUsuarios = $this->oUsuarioDAO->findByFilters($oUsuarioFilters);
+        return empty($aoUsuarios) ? 0 : count($aoUsuarios);
+    }
+
+    /**
+     * Responsavel por buscar um usuario por seu username
+     * 
+     * @param string $sUserName
+     * @author Wallisson
+     * @return Usuario
+     * @throws Exception
+     */
+    public function buscarPorUsername(string $sUserName) : Usuario {
+        if(empty($sUserName)){
+            throw new InvalidArgumentException("Nome do usuario inválido");
+        }
+
+        $oUsuarioFilters = new UsuarioFilters();
+        $oUsuarioFilters->setNomeUsuario($sUserName);
+        $aoUsuarios = $this->oUsuarioDAO->findByFilters($oUsuarioFilters);
+
+        if(count($aoUsuarios) == 0){
+            throw new Exception("Usuário não encontrado");
+        }
+
+        return $aoUsuarios[0];
     }
 
     /**
