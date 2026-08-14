@@ -1,9 +1,9 @@
 <?php
 namespace Model\Post;
 
+use Model\Card\Card;
 use Model\Usuario\Usuario;
 use BooleanEnum;
-use TipoStatusPostEnum;
 
 /**
  * Classe Post
@@ -22,8 +22,9 @@ class Post {
     /** @var Usuario $oUsuario */
     private $oUsuario;
 
-    /** @var int $iStatus */
-    private $iStatus;
+
+    /** @var Card $oCard */
+    private $oCard;
 
     /** @var int $iDeletado */
     private $iDeletado;
@@ -41,11 +42,11 @@ class Post {
     * 
     * @since 1.0.0 - Definição do versionamento da função
     */
-    public function __construct(Usuario $oUsuario,string $sTitulo) {
+    public function __construct(Usuario $oUsuario,string $sTitulo,Card $oCard) {
         $this->oUsuario = $oUsuario;
         $this->sTitulo = $sTitulo;
+		$this->oCard = $oCard;
         $this->iDeletado = BooleanEnum::NAO;
-        $this->iStatus = TipoStatusPostEnum::CRIADO;
     }
     
 
@@ -190,20 +191,43 @@ class Post {
         $this->oUsuario = $oUsuario;
     }
 
-    /*
-    * Define o status de deleção do post
-    *
-    * @author Wallisson
-    * 
-    * @param int $iDeletado
-    * @return void
-    *
-    * @throws Exception
-    * 
-    * @since 1.0.0 - Definição do versionamento da função
-    */
-    public function setDeletado(int $iDeletado) : void {
-        $this->iDeletado = $iDeletado;
-    }
+	/**
+	 * Retorna o objeto Card associado ao post
+	 *
+	 * @author Wallisson
+	 *
+	 * @since 1.0.0 - Definição do versionamento da função
+	 *
+	 * @return Card
+	 */
+	public function getCard(): Card {
+		return $this->oCard;
+	}
+
+	/**
+	 * Define o objeto Card associado ao post
+	 *
+	 * @author Wallisson
+	 *
+	 * @since 1.0.0 - Definição do versionamento da função
+	 *
+	 * @param Card $oCard
+	 * @return void
+	 */
+	public function setCard(Card $oCard): void {
+		$this->oCard = $oCard;
+	}
+
+	public function cadastrar(): void{
+
+	}
+
+	public function atualizar(): void{
+
+	}
+
+	public function deletar(): void{
+
+	}
 
 }

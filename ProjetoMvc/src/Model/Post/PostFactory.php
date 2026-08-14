@@ -27,9 +27,12 @@ class PostFactory {
     */
     public static function create(array $aDados): Post {
         $oUsuario = DAOFactory::getDAOFactory()->getUsuarioDAO()->findById($aDados['usuario_id']);
+		$oCard = DAOFactory::getDAOFactory()->getCardDAO()->findById($aDados['card_id']);
+
         $oPost = new Post(
             $oUsuario, 
-            $aDados['titulo']
+            $aDados['titulo'],
+	        $oCard
         );
 
         if(!empty($aDados['conteudo'])){

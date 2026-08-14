@@ -46,7 +46,7 @@ class UsuarioDAO implements UsuarioInterfaceDAO{
             throw new Exception("Não existe nemhum usuario com esse id : {$iId}");
         }
 
-        return UsuarioFactory::create($aaUsuario[0]);;
+        return UsuarioFactory::create($aaUsuario[0]);
     }
 
 

@@ -11,6 +11,13 @@ use Exception;
 class PostDAO implements PostDAOInterface {
 
 
+	/**
+	 * Responsavel por buscar um post pelo id
+	 *
+	 * @param int $iPostId
+	 * @return Post
+	 * @throws Exception
+	 */
 	public function findById(int $iPostId): Post {
 		$sSql = "SELECT * FROM posts pts WHERE pts.id = ?";
 		$aParam = [$iPostId];
@@ -34,6 +41,9 @@ class PostDAO implements PostDAOInterface {
 
 	/**
 	 * Responsavel por cadastrar um post
+	 *
+	 * @param Post $oPost
+	 * @throws Exception
 	 */
 	public function cadastrar(Post $oPost): void {
 		
@@ -41,6 +51,9 @@ class PostDAO implements PostDAOInterface {
 
 	/**
 	 * Responsavel por atualizar um post
+	 *
+	 * @param Post $oPost
+	 * @throws Exception
 	 */
 	public function atualizar(Post $oPost): void {
 		
@@ -48,6 +61,9 @@ class PostDAO implements PostDAOInterface {
 
 	/**
 	 * Responsavel por deletar logicamente um post
+	 *
+	 * @param Post $oPost
+	 * @throws Exception
 	 */
 	public function deletar(Post $oPost): void {
 		

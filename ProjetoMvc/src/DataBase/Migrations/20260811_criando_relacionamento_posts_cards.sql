@@ -1,0 +1,4 @@
+ALTER TABLE posts
+	ADD COLUMN card_id INT(11) NOT NULL
+ADD CONSTRAINT fk_posts_cards
+FOREIGN KEY (card_id) REFERENCES cards(id)
